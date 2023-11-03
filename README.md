@@ -1,2 +1,2 @@
-# learning-django
-A simpole calculator app with the API. Personal skill development :)
+# Learning Django
+A simple calculator app with the API for personal skill development :smile:
