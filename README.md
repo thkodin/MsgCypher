@@ -1,6 +1,7 @@
 # Learning Django
 
 A simple calculator app with the API for personal skill development :smile:
+Local Commit
 
 > WTF IS THIS? :scream:
 
@@ -19,3 +20,6 @@ graph TD;
     B-->D;
     C-->D;
 ```
+
+Online commit
+This is the github change
