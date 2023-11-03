@@ -3,7 +3,7 @@
 A simple calculator app with the API for personal skill development :smile:
 Local Commit
 
-> WTF IS THIS? :scream:
+> WTF IS THIS? :scream:v
 
 ```python
 E = m * c ** 2
