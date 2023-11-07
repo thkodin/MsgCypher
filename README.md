@@ -1,10 +1,6 @@
 # Learning Django
 
-A simple message encoding app with the API for personal skill development :smile:
-
-Following [freeCodeCamp's tutorial on Django](https://www.youtube.com/watch?v=UmljXZIypDc).
-
-This project is developed on Windows, and utilizes [`miniforge`](https://github.com/conda-forge/miniforge) (`mamba` included) to manage/install Python packages.
+A simple message encoding app with the API for personal skill development :smile: Following [freeCodeCamp's tutorial on Django](https://www.youtube.com/watch?v=UmljXZIypDc).
 
 Awesome `mermaid` diagram making this look way fancier than it is:
 
@@ -18,14 +14,18 @@ graph TD
     E -->|Displays Encoded Message| A
 ```
 
+This project is developed on Windows, and utilizes [`miniforge`](https://github.com/conda-forge/miniforge) (`mamba` included) to manage/install Python packages.
+
 Abbreviations I never really paid attention to before:
 
-- URL: Uniform Resource Locator
-- HTTP: Hypertext Transfer Protocol
-- HTML: Hypertext Markup Language
-- CSS: Cascading Style Sheets
+- **URL:** Uniform Resource Locator
+- **HTTP:** Hypertext Transfer Protocol
+- **HTML:** Hypertext Markup Language
+- **CSS:** Cascading Style Sheets
 
 ## Mamba Ambush
+
+> The recommended way of installing mamba, i.e., `miniforge` release [Miniforge3 23.3.1-1](https://github.com/conda-forge/miniforge/releases/tag/23.3.1-1) is currently not up-to-date with the latest mamba release. As such, to create a conda environment and activate it, you still need to use the `conda create` and `conda activate`. There is a workaround I am writing a gist on &nbsp; I'll link it when it's done. 
 
 Open up a project in any folder with VSCode. Mine is located at `D:\dev\personal\learning-django`, and my virtual environments at `D:\dev\.venvs`.
 
