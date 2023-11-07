@@ -1,0 +1,131 @@
+/* Define colors based on the "catppuccin-mocha" theme */
+.mermaid .node
+
+.mermaid {
+    fill: #f5e0dc; /* rosewater */
+    stroke: #8D6C0D;
+}
+
+.mermaid .label {
+    fill: #f2cdcd; /* flamingo */
+    stroke: #7D3C98;
+}
+
+.mermaid .keyword {
+    fill: #f5c2e7; /* pink */
+    stroke: #138D75;
+}
+
+.mermaid .comment {
+    fill: #cba6f7; /* mauve */
+}
+
+.mermaid .subtext0 {
+    fill: #f38ba8; /* red */
+    stroke: #D35400;
+}
+
+.mermaid .subtext1 {
+    fill: #eba0ac; /* maroon */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext2 {
+    fill: #fab387; /* peach */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext3 {
+    fill: #f9e2af; /* yellow */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext4 {
+    fill: #a6e3a1; /* green */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext5 {
+    fill: #94e2d5; /* teal */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext6 {
+    fill: #89dceb; /* sky */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext7 {
+    fill: #74c7ec; /* sapphire */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext8 {
+    fill: #89b4fa; /* blue */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext9 {
+    fill: #b4befe; /* lavender */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext10 {
+    fill: #cdd6f4; /* text */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext11 {
+    fill: #bac2de; /* subtext1 */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext12 {
+    fill: #a6adc8; /* subtext0 */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext13 {
+    fill: #9399b2; /* overlay2 */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext14 {
+    fill: #7f849c; /* overlay1 */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext15 {
+    fill: #6c7086; /* overlay0 */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext16 {
+    fill: #585b70; /* surface2 */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext17 {
+    fill: #45475a; /* surface1 */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext18 {
+    fill: #313244; /* surface0 */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext19 {
+    fill: #1e1e2e; /* base */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext20 {
+    fill: #181825; /* mantle */
+    stroke: #E74C3C;
+}
+
+.mermaid .subtext21 {
+    fill: #11111b; /* crust */
+    stroke: #E74C3C;
+}

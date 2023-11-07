@@ -33,14 +33,8 @@ body,
 .github-markdown-body {
     padding: 0 !important;
     max-width: auto !important;
-}
-
-.github-markdown-body {
     background-color: var(--base);
     color: var(--text);
-}
-
-.github-markdown-body {
     border: 1px solid transparent;
     box-sizing: border-box;
     margin: 0 auto;
@@ -54,7 +48,7 @@ body,
     margin: 0 auto;
 }
 
-
+/* Some VSCode settings */
 .vscode-body.scrollBeyondLastLine {
     margin-bottom: 0;
 }
@@ -62,6 +56,15 @@ body,
     padding-bottom: calc(100vh + 10px) !important;
 }
 
+/*------|Changes to other elements of markdown|------*/
+
+/* Heading 1 and 2 bottom margin (color adjustment, default is way too dark) */
+.github-markdown-body h1,
+.github-markdown-body h2 {
+    border-bottom: 1px solid var(--borderColor-muted, var(--surface0));
+}
+
+/* Blockquotes (notes started with '>' */
 .github-markdown-body blockquote {
     padding: 0 1em;
     color: var(--overlay2);
@@ -69,21 +72,21 @@ body,
 }
 
 .github-markdown-body pre {
-    color: initial;
+    color: var(--text);
     background-color: var(--mantle);
     border: none;
 }
 
 .github-markdown-body code {
-    color: inherit;
+    color: var(--text);
 }
 
 .github-markdown-body pre code {
-    color: initial;
+    color: inherit;
 }
 
 .github-markdown-body code > div {
-    background: none
+    background: none;
 }
 
 .github-markdown-body.showEditorSelection .code-line .code-line:hover:before {
@@ -102,5 +105,5 @@ body,
 }
 
 .vscode-dark.showEditorSelection .code-line:hover:before {
-    border-left: 3px solid var(--color-fg-default);
+    border-left: 3px solid var(--blue);
 }
