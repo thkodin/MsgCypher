@@ -25,7 +25,7 @@ Abbreviations I never really paid attention to before:
 
 ## Mamba Ambush
 
-> The recommended way of installing mamba, i.e., `miniforge` release [Miniforge3 23.3.1-1](https://github.com/conda-forge/miniforge/releases/tag/23.3.1-1) is currently not up-to-date with the latest mamba release. As such, to create a conda environment and activate it, you still need to use the `conda create` and `conda activate`. There is a workaround I am writing a gist on &nbsp; I'll link it when it's done. 
+> The recommended way of installing mamba, i.e., `miniforge` release [Miniforge3 23.3.1-1](https://github.com/conda-forge/miniforge/releases/tag/23.3.1-1) is currently not up-to-date with the latest mamba release. As such, to create a conda environment and activate it, you still need to use the `conda create` and `conda activate`. There is a workaround I am writing a gist on &nbsp; I'll link it when it's done.
 
 Open up a project in any folder with VSCode. Mine is located at `D:\dev\personal\learning-django`, and my virtual environments at `D:\dev\.venvs`.
 
