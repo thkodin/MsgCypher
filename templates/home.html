@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block title %}
+<title>Home | {% include "sitename.html" %}</title>
+{% endblock %} {% block content %}
+<h1>{% include "sitename.html" %}</h1>
+<p>Welcome! Are you looking to encode or decode?</p>
+<p>
+    <a href="{% url 'encoder:encode' %}"><button type="button">Encode</button></a>
+    <a href="{% url 'decoder:decode' %}"><button type="button">Decode</button></a>
+</p>
+{% endblock %}

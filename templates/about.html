@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block title %}
+<title>About | {% include "sitename.html" %}</title>
+{% endblock %} {% block content %}
+<h1>About {% include "sitename.html" %}</h1>
+<p>
+    Learning-focused project powered by Django. Encodes messaged based on a
+    configurable cypher that utilizes message content. Also allows decoding these
+    messages given a decoding key.
+</p>
+{% endblock %}

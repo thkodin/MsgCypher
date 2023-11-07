@@ -1,0 +1,20 @@
+<!--
+Base template that all pages follow.
+Specific content for a specific page is inserted via that page
+extending this base template.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block title %} {% endblock %}
+</head>
+
+<body>
+    {% block content %} {% endblock %} {% include "navbar.html" %}
+</body>
+
+</html>

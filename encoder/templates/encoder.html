@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+<!-- To use css, load static, and then call link rel in the head section -->
+<!-- {% load static %} -->
+<!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+
+{% block title %}
+<title>Encode | {% include "sitename.html" %}</title>
+{% endblock %}
+
+{% block content %}
+<h1>Encoder</h1>
+<form method="POST"> {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Encode</button>
+    <a href="{% url 'decoder:decode' %}">
+        <button type="button">Switch to Decoder</button>
+    </a>
+</form>
+
+<h2>Encoded Result</h2>
+{% if user_message and encoded_message %}
+<h3>Input Message</h3>
+{{ user_message|linebreaks }}
+<h3>Encoded Message</h3>
+{{ encoded_message|linebreaks }}
+{% else %}
+<p>No messages yet.</p>
+{% endif %}
+{% endblock %}
