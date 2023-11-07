@@ -62,14 +62,14 @@ mamba install django
 Once this is done, start a django project:
 
 ```shell
-django-admin startproject msgencoder .
+django-admin startproject msgcypher .
 ```
 
-This will create a project in the current directory. The `.` at the end is important, as it tells django to create the project in the current directory. If you forget this, you'll end up with a folder named `msgencoder` with another folder named `msgencoder` inside of it, which is not what we want in this case.
+This will create a project in the current directory. The `.` at the end is important, as it tells django to create the project in the current directory. If you forget this, you'll end up with a folder named `msgcypher` with another folder named `msgcypher` inside of it, which is not what we want in this case.
 
 A django project involves a minimum of three things (initialized to default values):
 
-1. A directory containing the project's code and settings, in this case, `msgencoder`.
+1. A directory containing the project's code and settings, in this case, `msgcypher`.
 2. A database file, typically a SQLite file, in this case, `db.sqlite3`.
 3. A script or command-line utility to handle administrative tasks, in this case, `manage.py`.
 
@@ -87,7 +87,7 @@ python manage.py runserver 9000
 
 This will run the server in the current terminal instance and can be stopped with `Ctrl + C`. It also prints a link to the landing page, which you can paste in your browser (or follow link from terminal, if supported by your terminal app) to open the landing page.
 
-Note that `msgencoder` contains the following files:
+Note that `msgcypher` contains the following files:
 
 - `__init__.py`: Tells Python that this is a Python package.
 - `asgi.py`: Entry point for ASGI-compatible web servers to serve the project.
@@ -97,4 +97,18 @@ Note that `msgencoder` contains the following files:
 
 > ASGI: Asynchronous Server Gateway Interface, WSGI: Web Server Gateway Interface
 
-Currently, important ones are `settings.py` and `urls.py`, which will define the project's settings and special URLs on top of the landing page URL to access specific functionality and apps of the project.
+Currently, important files are `settings.py` and `urls.py`, which will define the project's settings and special URLs on top of the landing page URL to access specific functionality (views) from apps we include in the project.
+
+### Creating Apps
+
+For our use case, we are going to assume the user has two routes to go: encode or decode. Thus, we create two apps:
+
+```shell
+# Make sure you're in the project root (where manage.py is)
+python manage.py startapp encoder
+python manage.py startapp decoder
+```
+
+You should now, in addition to `msgcypher`, have the folders `encoder` and `decoder` in the project root. These folders also initialize with a few useful files. Inside both these app folders, create two new files: `urls.py` (app-specific URLs to handle different app-specific views) and `forms.py` (to manage user input &ndash; we'll be using the ModelForms API).
+
+`urls.py` in each app folder is technically optional as it is only useful when you have multiple views within the app. This way, you can just include the whole list of app-specific URLs with just one line in the main project's `urls.py` file, i.e., at `msgcypher/urls.py`. Look at these files in this project to get an idea of how.
