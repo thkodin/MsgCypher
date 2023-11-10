@@ -1,4 +1,4 @@
-# MsgCypher :lock:
+# **MsgCypher** :lock:
 
 A simple message encoding app with the API for personal skill development. Following [freeCodeCamp's tutorial on Django](https://www.youtube.com/watch?v=UmljXZIypDc).
 
@@ -17,11 +17,48 @@ graph TD
 This project is developed on Windows, and utilizes [`miniforge`](https://github.com/conda-forge/miniforge) ([`mamba`](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#mamba) included) to manage/install Python packages. If you know `conda`, `mamba` is literally the same (including the CLI), but much faster. In all commands related to virtual environments, `mamba` can be replaced with `conda` without any issues, so if you have conda, you don't need to install `miniforge` (though I recommend it).
 
 > [!WARNING]
-> The terminal used in this project is *PowerShell 7.3.9* (MS Store version, initialized with `mamba`) &ndash; if you are using another shell, some commands might not work. See [B. Starting From Scratch](#b-creating-msgcypher-from-scratch) for more info.
+> The terminal used in this project is *PowerShell 7.3.9* (MS Store version, initialized with `mamba`) &ndash; if you are using another shell, some commands might not work. See [B. Starting From Scratch](#optional-creating-msgcypher-from-scratch) for more info.
 
-## A. Executing the Repository Locally
+## Table of Contents
 
-### 1. Get Repo
+- [**MsgCypher** :lock:](#msgcypher-lock)
+  - [Table of Contents](#table-of-contents)
+  - [**Executing the Repository Locally**](#executing-the-repository-locally)
+    - [**1. Get Repo**](#1-get-repo)
+    - [**2. Replicate Environment With `mamba` or `conda`**](#2-replicate-environment-with-mamba-or-conda)
+    - [**3. Launch the local host (default port 8000)**](#3-launch-the-local-host-default-port-8000)
+  - [**(OPTIONAL) Creating MsgCypher From Scratch**](#optional-creating-msgcypher-from-scratch)
+    - [**1. Setup a Mamba Ambush**](#1-setup-a-mamba-ambush)
+      - [***Install Miniforge On Windows***](#install-miniforge-on-windows)
+      - [***Recommended: Initialize `mamba` for PowerShell***](#recommended-initialize-mamba-for-powershell)
+    - [**2. Unchain Django**](#2-unchain-django)
+    - [**3. Create Apps**](#3-create-apps)
+      - [Create Models, Forms, Views, and URLs for Each App](#create-models-forms-views-and-urls-for-each-app)
+        - [*Models for User Messages*](#models-for-user-messages)
+        - [*Register Models for Admin Page*](#register-models-for-admin-page)
+        - [*Forms for User Inputs*](#forms-for-user-inputs)
+        - [*Encoding/Decoding Views*](#encodingdecoding-views)
+        - [*URLs (URLConf) for Views*](#urls-urlconf-for-views)
+        - [*Add Apps' URLConfs to Project URLConf*](#add-apps-urlconfs-to-project-urlconf)
+    - [**4. Run Migrations**](#4-run-migrations)
+    - [**5. Setup HTML Templates for Webpages**](#5-setup-html-templates-for-webpages)
+    - [**6. Run the Server**](#6-run-the-server)
+  - [**AWS EC2 Deployment :cloud: (Free-Tier)**](#aws-ec2-deployment-cloud-free-tier)
+    - [**1. Creating a Windows-Based EC2 Instance**](#1-creating-a-windows-based-ec2-instance)
+    - [**2. Connecting to the Windows EC2 Instance**](#2-connecting-to-the-windows-ec2-instance)
+      - [***From Windows Machines***](#from-windows-machines)
+        - [Troubleshooting](#troubleshooting)
+      - [***From VSCode (remotely via the Key Pair File)***](#from-vscode-remotely-via-the-key-pair-file)
+      - [***From Non-Windows Machines***](#from-non-windows-machines)
+    - [**3. Deploying the App on the Windows EC2 Instance**](#3-deploying-the-app-on-the-windows-ec2-instance)
+  - [**Docker Deployment**](#docker-deployment)
+  - [**CI/CD Checklist With GitHub Actions (TODO)**](#cicd-checklist-with-github-actions-todo)
+    - [Tests](#tests)
+    - [App-Related](#app-related)
+
+## **Executing the Repository Locally**
+
+### **1. Get Repo**
 
 Either:
 
@@ -41,7 +78,7 @@ Either:
 
 Finally, `cd` into the repository root directory (i.e., where this README file and manage.py are located).
 
-### 2. Replicate Environment With `mamba` or `conda`
+### **2. Replicate Environment With `mamba` or `conda`**
 
 Assuming either mamba/conda installed and no environment active in current shell, simply use the `environment.yml` included in this repo to replicate the virtual environment by running:
 
@@ -65,7 +102,7 @@ Once installed, activate it:
 mamba activate {path-to-installed-venv}
 ```
 
-### 3. Launch the local host (default port 8000)
+### **3. Launch the local host (default port 8000)**
 
 ```shell
 python manage.py runserver
@@ -79,9 +116,9 @@ python manage.py runserver 9000
 
 The terminal will offer a link to the hosted server &ndash; follow it to enter the homepage. From there, do whatever you want to :smile:
 
-## B. Creating MsgCypher From Scratch
+## **(OPTIONAL) Creating MsgCypher From Scratch**
 
-### 1. Setup a Mamba Ambush
+### **1. Setup a Mamba Ambush**
 
 Information sourced from [`mamba` documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#mamba) and their [installation guide](https://mamba.readthedocs.io/en/latest/mamba-installation.html).
 
@@ -92,7 +129,7 @@ All you need to do is head to the [Miniforge repository](https://github.com/cond
 
 The installed will guide you through the installation process. Otherwise, if you prefer terminal-based installation, their README will guide you through that process for various platforms.
 
-#### Install Miniforge On Windows
+#### ***Install Miniforge On Windows***
 
 On Windows, I recommend just using the GUI of the downloaded installer with all the **recommended** options. However, based on your preference, do consider changing the following:
 
@@ -120,7 +157,7 @@ start /wait "" Miniforge3-Windows-x86_64.exe /InstallationType=JustMe /RegisterP
 
 Feel free to change `RegisterPython=1` if you want to use the miniforge python as the system default.
 
-#### Recommended: Initialize `mamba` for PowerShell
+#### ***Recommended: Initialize `mamba` for PowerShell***
 
 Initializing PowerShell with `mamba` requires opening the Miniforge Prompt (automatically installed if Start tools are kept checked during miniforge installation) and then running:
 
@@ -158,7 +195,7 @@ Now, you can access all `conda`/`mamba` commands directly from PowerShell.
 > [!IMPORTANT]
 > As of the time of this writing, the latest `miniforge` release [Miniforge3 23.3.1-1](https://github.com/conda-forge/miniforge/releases/tag/23.3.1-1) is ***NOT*** up-to-date with the latest `mamba` release. As such, to create a virtual environment and activate it within powershell, you still need to use `conda create` and `conda activate` to create and activate/deactivate environments as `mamba create` and `mamba activate` will not work (or appear to work, but have no effect). There is a workaround &ndash; I might create a repo explaining it and link it here later.
 
-### 2. Unchain Django
+### **2. Unchain Django**
 
 *I am having way too much fun with these section titles.*
 
@@ -229,7 +266,7 @@ Note that `msgcypher` contains the following files:
 
 Remember that the important files to be adjusted later are `settings.py` and `urls.py`, which will define the project's settings and URLs (endpoints) to access specific functionality (views) of the created apps.
 
-### 3. Create Apps
+### **3. Create Apps**
 
 Django apps are small, distinct, and ideally self-contained parts of the overall project. For our use case, assume the user has two routes to follow based on the services plan (to be expanded on later): **encode** or **decode**.
 
@@ -270,7 +307,7 @@ Inside both these app folders, create two new files: `urls.py` (app-specific URL
 
 #### Create Models, Forms, Views, and URLs for Each App
 
-##### Models for User Messages
+##### *Models for User Messages*
 
 First, we define the models in `models.py` for each app. For now, there is only one model: the user's input message. Later on, we'll need to create a model that links the input message with the encoded message as well as the user who requested it. Anyway, since it's just a user message, the model is the same for both encode/decode apps:
 
@@ -282,7 +319,7 @@ class UserMessage(models.Model):
     message = models.CharField(max_length=120, blank=False, null=False)
 ```
 
-##### Register Models for Admin Page
+##### *Register Models for Admin Page*
 
 In order to implement a history feature later on, a certain number of most recent user messages need to be tracked in the database (and potentially a new `timestamp` field in the `UserMessage` model). Either way, register this model in `admin.py` of both apps:
 
@@ -294,7 +331,7 @@ from .models import UserMessage
 admin.site.register(UserMessage)
 ```
 
-##### Forms for User Inputs
+##### *Forms for User Inputs*
 
 Now, let's create the form for user message input in `forms.py` of both apps:
 
@@ -330,7 +367,7 @@ class UserMessageForm(ModelForm):
                 raise ValidationError("Invalid input. Message cannot be blank.")
 ```
 
-##### Encoding/Decoding Views
+##### *Encoding/Decoding Views*
 
 Now, let's setup the view that takes this message and encodes it. For now, all the app does is a simple reverse. The inverse of a reverse is just another reverse, so a reverse encode is the same as a decode. More sophisticated methods can always be added later:
 
@@ -422,7 +459,7 @@ def decodeUserMessage(request):
         return render(request, "decoder.html", {"form": form})
 ```
 
-##### URLs (URLConf) for Views
+##### *URLs (URLConf) for Views*
 
 > Adding `urls.py` in each app folder is technically optional as it is only useful when you have multiple views within the app. This way, you can just include the whole list of app-specific URLs with just one line in the main project's `urls.py` file, i.e., at `msgcypher/urls.py`.
 
@@ -450,7 +487,7 @@ urlpatterns = [
 ]
 ```
 
-##### Add Apps' URLConfs to Project URLConf
+##### *Add Apps' URLConfs to Project URLConf*
 
 In order for the project to be able to access the app-specific view-URLs, we need to add the following to `urls.py` of the project:
 
@@ -470,7 +507,7 @@ urlpatterns = [
 ]
 ```
 
-### 4. Run Migrations
+### **4. Run Migrations**
 
 Run migrations with:
 
@@ -483,7 +520,7 @@ Technically, migrations should be reun consistently while developing the apps. I
 
 The shell will tell you if any changes were made or not, and ask for model-by-model confirmation before finalizing any changes (you'll have to enter `y` or `n`).
 
-### 5. Setup HTML Templates for Webpages
+### **5. Setup HTML Templates for Webpages**
 
 I honestly don't want to go over these currently. Just look at the repo files and you'll get the idea. The global templates are located inside `templates/`, and app-specific templates at `encoder/templates/` and `decoder/templates`.
 
@@ -509,7 +546,7 @@ TEMPLATES = [
 
 In my setup, template inheritance is used extensively. `templates/base.html` is the base template that all other templates inherit from, and the `home.html` and `about.html` files are the landing page and about page templates respectively. The `encoder/templates/encoder.html` and `decoder/templates/decoder.html` files are the templates for the encode and decode pages respectively.
 
-### 6. Run the Server
+### **6. Run the Server**
 
 Now that everything is done, run the server with:
 
@@ -520,9 +557,9 @@ python manage.py runserver {port-num}
 
 The server should be functioning fine at this point if nothing is broken and migrations are up-to-date.
 
-## AWS EC2 Deployment :cloud: (Free-Tier)
+## **AWS EC2 Deployment :cloud: (Free-Tier)**
 
-### 1. Creating a Windows-Based EC2 Instance
+### **1. Creating a Windows-Based EC2 Instance**
 
 This can be a little confusing at first, so step-by-step:
 
@@ -551,7 +588,7 @@ That's it, the instance is now setup. Head back to the [EC2 Dashboard](https://c
 
 Now, let's connect to it!
 
-### 2. Connecting to the Windows EC2 Instance
+### **2. Connecting to the Windows EC2 Instance**
 
 The methods below follow the [***official instructions***](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html#connect-rdp).
 
@@ -573,7 +610,7 @@ Once the instance has been selected and is running (indicated by `Instance State
 
 Here, let's just consider the RDP client because it is the fastest to get working (at least on Windows).
 
-#### From Windows Machines
+#### ***From Windows Machines***
 
 For this, Remote Desktop Protocol (RDP) is required. This service comes pre-installed in Windows 11 (probably 10 too), otherwise you'll need to [set it up](https://apps.microsoft.com/detail/9WZDNCRFJ3PS?hl=en-gb&gl=GB). Verify it's working by running `mstsc` in PowerShell or Command Prompt.
 
@@ -588,27 +625,27 @@ You will be asked for the decrypted password while launching the remote desktop.
 
 In case the remote desktop fails to connect, check that all RDP connections are allowed in the security group over port `3389`. Additionally, ensure the decrypted password is copied over correctly, and verify that windows RDP client is working by running `mstsc` in PowerShell or Command Prompt.
 
-#### From VSCode (remotely via the Key Pair File)
+#### ***From VSCode (remotely via the Key Pair File)***
 
 All the information you need seems to be in this [StackOverflow post](https://stackoverflow.com/questions/54402104/how-to-connect-ec2-instance-with-vscode-directly-using-pem-file-in-sftp) (I have yet to test it though &ndash; I couldn't get SSH instructions from another source to work properly but I am pretty sure I did it wrong).
 
-#### From Non-Windows Machines
+#### ***From Non-Windows Machines***
 
 If you are trying to connect to this EC2 instance from a paltform other than Windows, pelase see the [official connection tutorial](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html#connect-rdp) for platform-specific instructions and relevant software for remote desktop connections.
 
-### 3. Deploying the App on the Windows EC2 Instance
+### **3. Deploying the App on the Windows EC2 Instance**
 
-With the RDP, you should be able to view the EC2 machine with a full-fledged GUI. All you need to do is [setup Miniforge](#1-setup-a-mamba-ambush) and then [clone this repository](#a-executing-the-repository-locally).
+With the RDP, you should be able to view the EC2 machine with a full-fledged GUI. All you need to do is [setup Miniforge](#1-setup-a-mamba-ambush) and then [clone this repository](#executing-the-repository-locally).
 
 If you want to use just the terminal, consider the [VSCode instructions](#from-vscode-remotely-via-the-key-pair-file) to connect to the EC2 instance, or using PuTTY to establish an SSH connection inside a terminal.
 
 > Personally, I feel that using VSCode or just the GUI are much better options, as both OpenSSH and RDP are pre-configured with Windows.
 
-## Docker Deployment
+## **Docker Deployment**
 
 TBA.
 
-## CI/CD Checklist With GitHub Actions (TODO)
+## **CI/CD Checklist With GitHub Actions (TODO)**
 
 Assuming that the app has been deployed to the Amazon AWS EC2 machine and on Docker as well, the following items are left to be done as part of the CI/CD pipeline with Github actions:
 
