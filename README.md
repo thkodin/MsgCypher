@@ -17,9 +17,9 @@ graph TD
 This project is developed on Windows, and utilizes [`miniforge`](https://github.com/conda-forge/miniforge) ([`mamba`](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#mamba) included) to manage/install Python packages. If you know `conda`, `mamba` is literally the same (including the CLI), but much faster. In all commands related to virtual environments, `mamba` can be replaced with `conda` without any issues, so if you have conda, you don't need to install `miniforge` (though I recommend it).
 
 > [!WARNING]
-> The terminal used in this project is *PowerShell 7.3.9* (MS Store version, initialized with `mamba`) &ndash; if you are using another shell, some commands might not work. See [B. Starting From Scratch](#b-creating-msgcypher-from-scratch-📜) for more info.
+> The terminal used in this project is *PowerShell 7.3.9* (MS Store version, initialized with `mamba`) &ndash; if you are using another shell, some commands might not work. See [B. Starting From Scratch](#b-creating-msgcypher-from-scratch) for more info.
 
-## A. Executing the Repository Locally :scroll:
+## A. Executing the Repository Locally
 
 ### 1. Get Repo
 
@@ -79,7 +79,7 @@ python manage.py runserver 9000
 
 The terminal will offer a link to the hosted server &ndash; follow it to enter the homepage. From there, do whatever you want to :smile:
 
-## B. Creating MsgCypher From Scratch :scroll:
+## B. Creating MsgCypher From Scratch
 
 ### 1. Setup a Mamba Ambush
 
@@ -573,7 +573,7 @@ Once the instance has been selected and is running (indicated by `Instance State
 
 Here, let's just consider the RDP client because it is the fastest to get working (at least on Windows).
 
-#### - From Windows Machines
+#### From Windows Machines
 
 For this, Remote Desktop Protocol (RDP) is required. This service comes pre-installed in Windows 11 (probably 10 too), otherwise you'll need to [set it up](https://apps.microsoft.com/detail/9WZDNCRFJ3PS?hl=en-gb&gl=GB). Verify it's working by running `mstsc` in PowerShell or Command Prompt.
 
@@ -588,17 +588,17 @@ You will be asked for the decrypted password while launching the remote desktop.
 
 In case the remote desktop fails to connect, check that all RDP connections are allowed in the security group over port `3389`. Additionally, ensure the decrypted password is copied over correctly, and verify that windows RDP client is working by running `mstsc` in PowerShell or Command Prompt.
 
-#### - From VSCode (remotely via the Key Pair File)
+#### From VSCode (remotely via the Key Pair File)
 
 All the information you need seems to be in this [StackOverflow post](https://stackoverflow.com/questions/54402104/how-to-connect-ec2-instance-with-vscode-directly-using-pem-file-in-sftp) (I have yet to test it though &ndash; I couldn't get SSH instructions from another source to work properly but I am pretty sure I did it wrong).
 
-#### - From Non-Windows Machines
+#### From Non-Windows Machines
 
 If you are trying to connect to this EC2 instance from a paltform other than Windows, pelase see the [official connection tutorial](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html#connect-rdp) for platform-specific instructions and relevant software for remote desktop connections.
 
 ### 3. Deploying the App on the Windows EC2 Instance
 
-With the RDP, you should be able to view the EC2 machine with a full-fledged GUI. All you need to do is [setup Miniforge](#1-setup-a-mamba-ambush) and then [clone this repository](#a-executing-the-repository-locally-📜).
+With the RDP, you should be able to view the EC2 machine with a full-fledged GUI. All you need to do is [setup Miniforge](#1-setup-a-mamba-ambush) and then [clone this repository](#a-executing-the-repository-locally).
 
 If you want to use just the terminal, consider the [VSCode instructions](#from-vscode-remotely-via-the-key-pair-file) to connect to the EC2 instance, or using PuTTY to establish an SSH connection inside a terminal.
 
