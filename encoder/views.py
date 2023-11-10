@@ -2,6 +2,11 @@ from django.shortcuts import render
 
 from .forms import UserMessageForm
 
+# To keep track of the user's most recent input and its output.
+# This makes the result invalid-input safe in that it is preserved even if the
+# user enters invalid input (e.g., a blank message), which would normally
+# refresh the page and the variables within the view function. Describing them
+# in this global scope preserves them.
 previous_input = {"user_message": "", "encoded_message": ""}
 
 
