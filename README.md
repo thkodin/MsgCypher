@@ -17,7 +17,7 @@ graph TD
 This project is developed on Windows, and utilizes [`miniforge`](https://github.com/conda-forge/miniforge) ([`mamba`](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#mamba) included) to manage/install Python packages. If you know `conda`, `mamba` is literally the same (including the CLI), but much faster. In all commands related to virtual environments, `mamba` can be replaced with `conda` without any issues, so if you have conda, you don't need to install `miniforge` (though I recommend it).
 
 > [!WARNING]
-> The terminal used in this project is *PowerShell 7.3.9* (MS Store version, initialized with `mamba`) &ndash; if you are using another shell, some commands might not work. See [B. Starting From Scratch](#optional-creating-msgcypher-from-scratch) for more info.
+> The terminal used in this project is *PowerShell 7.3.9* (MS Store version, initialized with `mamba`) &ndash; if you are using another shell, some commands might not work. See [*Starting From Scratch*](#optional-creating-msgcypher-from-scratch) for more info.
 
 ## Table of Contents
 
@@ -33,13 +33,12 @@ This project is developed on Windows, and utilizes [`miniforge`](https://github.
       - [***Recommended: Initialize `mamba` for PowerShell***](#recommended-initialize-mamba-for-powershell)
     - [**2. Unchain Django**](#2-unchain-django)
     - [**3. Create Apps**](#3-create-apps)
-      - [Create Models, Forms, Views, and URLs for Each App](#create-models-forms-views-and-urls-for-each-app)
-        - [*Models for User Messages*](#models-for-user-messages)
-        - [*Register Models for Admin Page*](#register-models-for-admin-page)
-        - [*Forms for User Inputs*](#forms-for-user-inputs)
-        - [*Encoding/Decoding Views*](#encodingdecoding-views)
-        - [*URLs (URLConf) for Views*](#urls-urlconf-for-views)
-        - [*Add Apps' URLConfs to Project URLConf*](#add-apps-urlconfs-to-project-urlconf)
+      - [***Models for User Messages***](#models-for-user-messages)
+      - [***Register Models for Admin Page***](#register-models-for-admin-page)
+      - [***Forms for User Inputs***](#forms-for-user-inputs)
+      - [***Encoding/Decoding Views***](#encodingdecoding-views)
+      - [***URLs (URLConf) for Views***](#urls-urlconf-for-views)
+      - [***Add Apps' URLConfs to Project URLConf***](#add-apps-urlconfs-to-project-urlconf)
     - [**4. Run Migrations**](#4-run-migrations)
     - [**5. Setup HTML Templates for Webpages**](#5-setup-html-templates-for-webpages)
     - [**6. Run the Server**](#6-run-the-server)
@@ -47,14 +46,14 @@ This project is developed on Windows, and utilizes [`miniforge`](https://github.
     - [**1. Creating a Windows-Based EC2 Instance**](#1-creating-a-windows-based-ec2-instance)
     - [**2. Connecting to the Windows EC2 Instance**](#2-connecting-to-the-windows-ec2-instance)
       - [***From Windows Machines***](#from-windows-machines)
-        - [Troubleshooting](#troubleshooting)
+        - [*Troubleshooting*](#troubleshooting)
       - [***From VSCode (remotely via the Key Pair File)***](#from-vscode-remotely-via-the-key-pair-file)
       - [***From Non-Windows Machines***](#from-non-windows-machines)
     - [**3. Deploying the App on the Windows EC2 Instance**](#3-deploying-the-app-on-the-windows-ec2-instance)
   - [**Docker Deployment**](#docker-deployment)
   - [**CI/CD Checklist With GitHub Actions (TODO)**](#cicd-checklist-with-github-actions-todo)
-    - [Tests](#tests)
-    - [App-Related](#app-related)
+    - [**Tests**](#tests)
+    - [**App-Related**](#app-related)
 
 ## **Executing the Repository Locally**
 
@@ -69,7 +68,7 @@ Either:
     git clone https://github.com/thkodin/MsgCypher.git {clone-path}
     ```
 
-- [Download it as a zip](https://github.com/thkodin/MsgCypher/archive/refs/heads/main.zip) and extract the repository. You can also do this from PowerShell, which might be helpful if you are connecting remotely.
+- Or, [download it as a zip](https://github.com/thkodin/MsgCypher/archive/refs/heads/main.zip) and extract the repository. You can also do this from PowerShell, which might be helpful if you are connecting remotely.
 
     ```shell
     Invoke-WebRequest https://github.com/thkodin/MsgCypher/archive/refs/heads/main.zip -OutFile {download-path}
@@ -87,7 +86,7 @@ Assuming either mamba/conda installed and no environment active in current shell
 mamba env create -f environment.yml
 ```
 
-Note that this creates the venv in your default configured directory for new named virtual environments. On a typical installation, this will be `C:\Users\<username>\miniforge3\envs\msgcypher`.
+Note that this creates the venv in your default configured directory for new named virtual environments. On a typical installation, this will be `C:\Users\<username>\miniforge3\envs\`.
 
 If you want to install the venv to a custom path, use the `--prefix` (shorthand `-p`) flag:
 
@@ -305,9 +304,7 @@ Finally, ensure that `DEBUG = True` (by default it should be).
 
 Inside both these app folders, create two new files: `urls.py` (app-specific URLs to handle different app-specific views) and `forms.py` (to manage user input &ndash; we'll be using the *ModelForms* Django package rather than just *Forms* as our user input does not contain non-database related information).
 
-#### Create Models, Forms, Views, and URLs for Each App
-
-##### *Models for User Messages*
+#### ***Models for User Messages***
 
 First, we define the models in `models.py` for each app. For now, there is only one model: the user's input message. Later on, we'll need to create a model that links the input message with the encoded message as well as the user who requested it. Anyway, since it's just a user message, the model is the same for both encode/decode apps:
 
@@ -319,7 +316,7 @@ class UserMessage(models.Model):
     message = models.CharField(max_length=120, blank=False, null=False)
 ```
 
-##### *Register Models for Admin Page*
+#### ***Register Models for Admin Page***
 
 In order to implement a history feature later on, a certain number of most recent user messages need to be tracked in the database (and potentially a new `timestamp` field in the `UserMessage` model). Either way, register this model in `admin.py` of both apps:
 
@@ -331,7 +328,7 @@ from .models import UserMessage
 admin.site.register(UserMessage)
 ```
 
-##### *Forms for User Inputs*
+#### ***Forms for User Inputs***
 
 Now, let's create the form for user message input in `forms.py` of both apps:
 
@@ -367,7 +364,7 @@ class UserMessageForm(ModelForm):
                 raise ValidationError("Invalid input. Message cannot be blank.")
 ```
 
-##### *Encoding/Decoding Views*
+#### ***Encoding/Decoding Views***
 
 Now, let's setup the view that takes this message and encodes it. For now, all the app does is a simple reverse. The inverse of a reverse is just another reverse, so a reverse encode is the same as a decode. More sophisticated methods can always be added later:
 
@@ -459,7 +456,7 @@ def decodeUserMessage(request):
         return render(request, "decoder.html", {"form": form})
 ```
 
-##### *URLs (URLConf) for Views*
+#### ***URLs (URLConf) for Views***
 
 > Adding `urls.py` in each app folder is technically optional as it is only useful when you have multiple views within the app. This way, you can just include the whole list of app-specific URLs with just one line in the main project's `urls.py` file, i.e., at `msgcypher/urls.py`.
 
@@ -487,7 +484,7 @@ urlpatterns = [
 ]
 ```
 
-##### *Add Apps' URLConfs to Project URLConf*
+#### ***Add Apps' URLConfs to Project URLConf***
 
 In order for the project to be able to access the app-specific view-URLs, we need to add the following to `urls.py` of the project:
 
@@ -621,7 +618,7 @@ Then, with the RDP Client option selected for Windows EC2 connection:
 
 You will be asked for the decrypted password while launching the remote desktop. Just provide it, and you should be good to go!
 
-##### Troubleshooting
+##### *Troubleshooting*
 
 In case the remote desktop fails to connect, check that all RDP connections are allowed in the security group over port `3389`. Additionally, ensure the decrypted password is copied over correctly, and verify that windows RDP client is working by running `mstsc` in PowerShell or Command Prompt.
 
@@ -649,12 +646,12 @@ TBA.
 
 Assuming that the app has been deployed to the Amazon AWS EC2 machine and on Docker as well, the following items are left to be done as part of the CI/CD pipeline with Github actions:
 
-### Tests
+### **Tests**
 
 - [ ] Create and integrate tests within the app itself with `Django`.
 - [ ] Create and itnegrate tests with `Github Actions`.
 
-### App-Related
+### **App-Related**
 
 - [ ] Add more encoding/decoding techniques.
 - [ ] Add single CSS file for the webpages.
