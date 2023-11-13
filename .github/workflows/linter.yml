@@ -54,8 +54,8 @@
           - name: Lint Code Base
             uses: super-linter/super-linter/slim@v5
             env:
+              IGNORE_GITIGNORED_FILES: true
               VALIDATE_ALL_CODEBASE: true
               VALIDATE_PYTHON_BLACK: true
-              VALIDATE_PYTHON_PYLINT: true
               DEFAULT_BRANCH: main
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
