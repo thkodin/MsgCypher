@@ -14,10 +14,10 @@ graph TD
     E -->|Displays Encoded Message| A
 ```
 
-This project is developed on Windows, and utilizes [`miniforge`](https://github.com/conda-forge/miniforge) ([`mamba`](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#mamba) included) to manage/install Python packages. If you know `conda`, `mamba` is literally the same (including the CLI), but much faster. In all commands related to virtual environments, `mamba` can be replaced with `conda` without any issues, so if you have conda, you don't need to install `miniforge` (though I recommend it).
+This project is developed on Windows, and utilizes [`miniforge`](https://github.com/conda-forge/miniforge) ([`mamba`](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#mamba) included) to manage/install Python packages. If you know `conda`, mamba is literally the same (including the CLI), but much faster. In all commands related to virtual environments, mamba can be replaced with conda without any issues, so if you have conda, you don't need to install miniforge (though I recommend it).
 
 > [!WARNING]
-> The terminal used in this project is *PowerShell 7.3.9* (MS Store version, initialized with `mamba`) &ndash; if you are using another shell, some commands might not work. See [*Starting From Scratch*](#optional-creating-msgcypher-from-scratch) for more info.
+> The terminal used in this project is *PowerShell 7.3.9* (MS Store version, initialized with mamba) &ndash; if you are using another shell, some commands might not work. See [*Starting From Scratch*](#optional-creating-msgcypher-from-scratch) for more info.
 
 ## Table of Contents
 
@@ -25,12 +25,12 @@ This project is developed on Windows, and utilizes [`miniforge`](https://github.
   - [Table of Contents](#table-of-contents)
   - [**Executing the Repository Locally**](#executing-the-repository-locally)
     - [**1. Get Repo**](#1-get-repo)
-    - [**2. Replicate Environment With `mamba` or `conda`**](#2-replicate-environment-with-mamba-or-conda)
+    - [**2. Replicate Environment With mamba or conda**](#2-replicate-environment-with-mamba-or-conda)
     - [**3. Launch the local host (default port 8000)**](#3-launch-the-local-host-default-port-8000)
   - [**(OPTIONAL) Creating MsgCypher From Scratch**](#optional-creating-msgcypher-from-scratch)
     - [**1. Setup a Mamba Ambush**](#1-setup-a-mamba-ambush)
       - [***Install Miniforge On Windows***](#install-miniforge-on-windows)
-      - [***Recommended: Initialize `mamba` for PowerShell***](#recommended-initialize-mamba-for-powershell)
+      - [***Recommended: Initialize mamba for PowerShell***](#recommended-initialize-mamba-for-powershell)
     - [**2. Unchain Django**](#2-unchain-django)
     - [**3. Create Apps**](#3-create-apps)
       - [***Models for User Messages***](#models-for-user-messages)
@@ -63,25 +63,25 @@ Either:
 
 - Clone this repo:
 
-    ```shell
+    ```powershell
     # Clone to current directory
     git clone https://github.com/thkodin/MsgCypher.git {clone-path}
     ```
 
 - Or, [download it as a zip](https://github.com/thkodin/MsgCypher/archive/refs/heads/main.zip) and extract the repository. You can also do this from PowerShell, which might be helpful if you are connecting remotely.
 
-    ```shell
+    ```powershell
     Invoke-WebRequest https://github.com/thkodin/MsgCypher/archive/refs/heads/main.zip -OutFile {download-path}
     Expand-Archive {zip-path} -DestinationPath {extract-path}
     ```
 
 Finally, `cd` into the repository root directory (i.e., where this README file and manage.py are located).
 
-### **2. Replicate Environment With `mamba` or `conda`**
+### **2. Replicate Environment With mamba or conda**
 
 Assuming either mamba/conda installed and no environment active in current shell, simply use the `environment.yml` included in this repo to replicate the virtual environment by running:
 
-```shell
+```powershell
 # mamba can be replaced with conda
 mamba env create -f environment.yml
 ```
@@ -90,26 +90,26 @@ Note that this creates the venv in your default configured directory for new nam
 
 If you want to install the venv to a custom path, use the `--prefix` (shorthand `-p`) flag:
 
-```shell
+```powershell
 # mamba can be replaced with conda
 mamba env create -f environment.yml -p {path-to-install-venv}
 ```
 
 Once installed, activate it:
 
-```shell
+```powershell
 mamba activate {path-to-installed-venv}
 ```
 
 ### **3. Launch the local host (default port 8000)**
 
-```shell
+```powershell
 python manage.py runserver
 ```
 
 To launch on a different port, e.g., 9000:
 
-```shell
+```powershell
 python manage.py runserver 9000
 ```
 
@@ -119,7 +119,7 @@ The terminal will offer a link to the hosted server &ndash; follow it to enter t
 
 ### **1. Setup a Mamba Ambush**
 
-Information sourced from [`mamba` documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#mamba) and their [installation guide](https://mamba.readthedocs.io/en/latest/mamba-installation.html).
+Information sourced from [mamba documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#mamba) and their [installation guide](https://mamba.readthedocs.io/en/latest/mamba-installation.html).
 
 All you need to do is head to the [Miniforge repository](https://github.com/conda-forge/miniforge) and download the installer specific to your platform. On the [release page](https://github.com/conda-forge/miniforge/releases/) as well as the repo's README, you'll find two miniforge versions (at the time of this writing):
 
@@ -146,7 +146,7 @@ runas /user:Administrator powershell  # Windows PWSH
 
 With the elevated PowerShell, run:
 
-```shell
+```powershell
 # Download the installer for Miniforge3 23.3.1
 Invoke-WebRequest https://github.com/conda-forge/miniforge/releases/download/23.3.1-1/Miniforge3-Windows-x86_64.exe -OutFile Miniforge3-Windows-x86_64.exe
 
@@ -156,9 +156,9 @@ start /wait "" Miniforge3-Windows-x86_64.exe /InstallationType=JustMe /RegisterP
 
 Feel free to change `RegisterPython=1` if you want to use the miniforge python as the system default.
 
-#### ***Recommended: Initialize `mamba` for PowerShell***
+#### ***Recommended: Initialize mamba for PowerShell***
 
-Initializing PowerShell with `mamba` requires opening the Miniforge Prompt (automatically installed if Start tools are kept checked during miniforge installation) and then running:
+Initializing PowerShell with mamba requires opening the Miniforge Prompt (automatically installed if Start tools are kept checked during miniforge installation) and then running:
 
 ```shell
 # Miniforge Prompt
@@ -168,9 +168,9 @@ mamba init powershell
 powershell
 ```
 
-If you do not have Miniforge Prompt for whatever reason, you can use PowerShell or CMD to initialize `mamba` for PowerShell like so:
+If you do not have Miniforge Prompt for whatever reason, you can use PowerShell or CMD to initialize mamba for PowerShell like so:
 
-```shell
+```powershell
 # Command Prompt/PowerShell
 {miniforge-path}\Scripts\activate.bat {miniforge-path}
 
@@ -189,25 +189,25 @@ Based on the version of miniforge you installed, the default installation paths 
 - (miniforge3): `C:\Users\{username}>\miniforge3`
 - (miniforge-pypy3): `C:\Users\{username}\miniforge-pypy3`
 
-Now, you can access all `conda`/`mamba` commands directly from PowerShell.
+Now, you can access all conda/mamba commands directly from PowerShell.
 
 > [!IMPORTANT]
-> As of the time of this writing, the latest `miniforge` release [Miniforge3 23.3.1-1](https://github.com/conda-forge/miniforge/releases/tag/23.3.1-1) is ***NOT*** up-to-date with the latest `mamba` release. As such, to create a virtual environment and activate it within powershell, you still need to use `conda create` and `conda activate` to create and activate/deactivate environments as `mamba create` and `mamba activate` will not work (or appear to work, but have no effect). There is a workaround &ndash; I might create a repo explaining it and link it here later.
+> As of the time of this writing, the latest miniforge release [Miniforge3 23.3.1-1](https://github.com/conda-forge/miniforge/releases/tag/23.3.1-1) is ***NOT*** up-to-date with the latest mamba release. As such, to create a virtual environment and activate it within powershell, you still need to use `conda create` and `conda activate` to create and activate/deactivate environments as `mamba create` and `mamba activate` will not work (or appear to work, but have no effect). There is a workaround &ndash; I might create a repo explaining it and link it here later.
 
 ### **2. Unchain Django**
 
 *I am having way too much fun with these section titles.*
 
-Open up a project in any folder with VSCode, and fire up a PowerShell terminal in this directory (or use VSCode's integrated one if you have it configured to use PowerShell). Assuming a default `mamba` configuration with nothing changed, the following will create a virtual environment in the `miniforge` directory:
+Open up a project in any folder with VSCode, and fire up a PowerShell terminal in this directory (or use VSCode's integrated one if you have it configured to use PowerShell). Assuming a default mamba configuration with nothing changed, the following will create a virtual environment in the `miniforge` directory:
 
-```shell
+```powershell
 # Powershell 7.3.9 #
 conda create msgcypher-venv python=3.11
 ```
 
 Confirm all prompts, and when it's done, verify it's recognized by mamba. The following commands will print a list of recognized environments, activate it, and print the python version for that environment. If anything fails, the terminal will let you know.
 
-```shell
+```powershell
 # Locate in environment list, activate it, and check python version
 mamba info -e
 conda activate msgcypher-venv
@@ -218,14 +218,14 @@ python --version
 
 Now the virtual environment's setup, activate it if not already and install django:
 
-```shell
+```powershell
 # Ensure msgcypher-venv is active beforehand!
 mamba install django
 ```
 
 Once this is done, start a django project:
 
-```shell
+```powershell
 django-admin startproject msgcypher .
 ```
 
@@ -239,13 +239,13 @@ A django project involves a minimum of three things (initialized to default valu
 
 To run the  server on the landing page (by default, this works on port 8000):
 
-```shell
+```powershell
 python manage.py runserver
 ```
 
 To run the server on a different port, e.g, 9000, you'd do:
 
-```shell
+```powershell
 python manage.py runserver 9000
 ```
 
@@ -271,7 +271,7 @@ Django apps are small, distinct, and ideally self-contained parts of the overall
 
 From the project root, create two apps:
 
-```shell
+```powershell
 # Make sure you're in the project root beforehand (where manage.py is)
 python manage.py startapp encoder
 python manage.py startapp decoder
@@ -508,7 +508,7 @@ urlpatterns = [
 
 Run migrations with:
 
-```shell
+```powershell
 python manage.py makemigrations
 python manage.py migrate
 ```
@@ -547,7 +547,7 @@ In my setup, template inheritance is used extensively. `templates/base.html` is 
 
 Now that everything is done, run the server with:
 
-```shell
+```powershell
 # port-num is optional, defaults to 8000
 python manage.py runserver {port-num}
 ```
@@ -596,7 +596,7 @@ If it is not listed, it is possible the instance is not running and the search h
 While the security groups were already configured at EC2 creation time to allow all traffic for RTP, HTTP, and HTTPS, it is best to double-check that the corresponding rules exist in the security group:
 
 1. With the instance selected, switch from the **Details** tab to the **Security** tab on the information pop-up window.
-2. Expand **Inbound Rules** and ensure that **port `3389`** is open to all traffic. If you plano to remotely connect VSCode to this instance, additionally check that port **`22`** for SSH is open to all traffic as well.
+2. Expand **Inbound Rules** and ensure that **port 3389** is open to all traffic. If you plano to remotely connect VSCode to this instance, additionally check that port **22** for SSH is open to all traffic as well.
 3. If a desired port is not open, click the Security Group name > Inbound Rules > Edit Inbound Rules, and add the corresponding rule to allow it.
 
 Once the instance has been selected and is running (indicated by `Instance State: Running`), look for the **Connect** button on top of the page. Click on it, and you should see exactly three options (as of this writing):
@@ -620,11 +620,98 @@ You will be asked for the decrypted password while launching the remote desktop.
 
 ##### *Troubleshooting*
 
-In case the remote desktop fails to connect, check that all RDP connections are allowed in the security group over port `3389`. Additionally, ensure the decrypted password is copied over correctly, and verify that windows RDP client is working by running `mstsc` in PowerShell or Command Prompt.
+In case the remote desktop fails to connect, check that all RDP connections are allowed in the security group over port 3389. Additionally, ensure the decrypted password is copied over correctly, and verify that windows RDP client is working by running `mstsc` in PowerShell or Command Prompt.
 
 #### ***From VSCode (remotely via the Key Pair File)***
 
-All the information you need seems to be in this [StackOverflow post](https://stackoverflow.com/questions/54402104/how-to-connect-ec2-instance-with-vscode-directly-using-pem-file-in-sftp) (I have yet to test it though &ndash; I couldn't get SSH instructions from another source to work properly but I am pretty sure I did it wrong).
+All the information you need seems to be in this [StackOverflow post](https://stackoverflow.com/questions/54402104/how-to-connect-ec2-instance-with-vscode-directly-using-pem-file-in-sftp)
+
+For the record, I am unable to get this working desppite ensuring that port 22 on the EC2 instance is open to all SSH traffic. The problem is not VSCode specific, I cannot do this within powershell either with `ssh -i "path/to/key-pair-file" Administrator@{EC2-Instance-Public-IP}`. The error is a connection timeout... I have attached the logs if annybody wants to rack their brains on it.
+
+<details>
+<summary><i>Error Logs</i></summary>
+
+```powershell
+[03:53:02.173] Log Level: 2
+[03:53:02.185] SSH Resolver called for "ssh-remote+3.26.15.245", attempt 1
+[03:53:02.189] "remote.SSH.useLocalServer": false
+[03:53:02.190] "remote.SSH.useExecServer": false
+[03:53:02.190] "remote.SSH.showLoginTerminal": false
+[03:53:02.190] "remote.SSH.remotePlatform": {"i-003395d640b25041a":"windows"}
+[03:53:02.191] "remote.SSH.path": undefined
+[03:53:02.191] "remote.SSH.configFile": C:\Users\taimo\.ssh\config
+[03:53:02.191] "remote.SSH.useFlock": true
+[03:53:02.192] "remote.SSH.lockfilesInTmp": false
+[03:53:02.192] "remote.SSH.localServerDownload": auto
+[03:53:02.192] "remote.SSH.remoteServerListenOnSocket": false
+[03:53:02.193] "remote.SSH.showLoginTerminal": false
+[03:53:02.193] "remote.SSH.defaultExtensions": []
+[03:53:02.193] "remote.SSH.loglevel": 2
+[03:53:02.194] "remote.SSH.enableDynamicForwarding": true
+[03:53:02.194] "remote.SSH.enableRemoteCommand": false
+[03:53:02.194] "remote.SSH.serverPickPortsFromRange": {}
+[03:53:02.194] "remote.SSH.serverInstallPath": {}
+[03:53:02.199] VS Code version: 1.84.2
+[03:53:02.199] Remote-SSH version: remote-ssh@0.107.0
+[03:53:02.200] win32 x64
+[03:53:02.201] SSH Resolver called for host: 3.26.15.245
+[03:53:02.201] Setting up SSH remote "3.26.15.245"
+[03:53:02.206] Using commit id "1a5daa3a0231a0fbba4f14db7ec463cf99d7768e" and quality "stable" for server
+[03:53:02.210] Install and start server if needed
+[03:53:03.643] Checking ssh with "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.5\bin\ssh.exe -V"
+[03:53:03.646] Got error from ssh: spawn C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.5\bin\ssh.exe ENOENT
+[03:53:03.646] Checking ssh with "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.5\libnvvp\ssh.exe -V"
+[03:53:03.647] Got error from ssh: spawn C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.5\libnvvp\ssh.exe ENOENT
+[03:53:03.647] Checking ssh with "D:\Media\VM\VMWare\bin\ssh.exe -V"
+[03:53:03.648] Got error from ssh: spawn D:\Media\VM\VMWare\bin\ssh.exe ENOENT
+[03:53:03.648] Checking ssh with "C:\windows\system32\ssh.exe -V"
+[03:53:03.649] Got error from ssh: spawn C:\windows\system32\ssh.exe ENOENT
+[03:53:03.649] Checking ssh with "C:\windows\ssh.exe -V"
+[03:53:03.650] Got error from ssh: spawn C:\windows\ssh.exe ENOENT
+[03:53:03.650] Checking ssh with "C:\windows\System32\Wbem\ssh.exe -V"
+[03:53:03.651] Got error from ssh: spawn C:\windows\System32\Wbem\ssh.exe ENOENT
+[03:53:03.652] Checking ssh with "C:\windows\System32\WindowsPowerShell\v1.0\ssh.exe -V"
+[03:53:03.652] Got error from ssh: spawn C:\windows\System32\WindowsPowerShell\v1.0\ssh.exe ENOENT
+[03:53:03.653] Checking ssh with "C:\windows\System32\OpenSSH\ssh.exe -V"
+[03:53:03.688] > OpenSSH_for_Windows_8.6p1, Libr
+[03:53:03.688] > eSSL 3.4.3
+
+[03:53:03.692] Using SSH config file "C:\Users\taimo\.ssh\config"
+[03:53:03.692] Remote command length: 6276/8192 characters
+[03:53:03.692] Running script with connection command: "C:\windows\System32\OpenSSH\ssh.exe" -T -D 55164 -F "C:\Users\taimo\.ssh\config" "3.26.15.245" powershell
+[03:53:03.695] Terminal shell path: C:\WINDOWS\System32\cmd.exe
+[03:53:25.245] > ssh: connect to host 3.26.15.245 port 22: Connection timed out
+> The process tried to write to a nonexistent pipe.
+> ]0;C:\WINDOWS\System32\cmd.exe
+[03:53:25.246] Got some output, clearing connection timeout
+[03:53:26.523] "install" terminal command done
+[03:53:26.524] Install terminal quit with output: ]0;C:\WINDOWS\System32\cmd.exe
+[03:53:26.524] Received install output: ]0;C:\WINDOWS\System32\cmd.exe
+[03:53:26.525] Failed to parse remote port from server output
+[03:53:26.527] Resolver error: Error:
+	at g.Create (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:642290)
+	at t.handleInstallOutput (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:639656)
+	at t.tryInstall (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:761636)
+	at async c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:722175
+	at async t.withShowDetailsEvent (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:725481)
+	at async I (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:719146)
+	at async t.resolve (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:722852)
+	at async c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:906656
+[03:53:26.538] ------
+
+
+
+
+[03:53:27.463] Opening exec server for ssh-remote+3.26.15.245
+[03:53:27.534] Initizing new exec server for ssh-remote+3.26.15.245
+[03:53:27.552] Using commit id "1a5daa3a0231a0fbba4f14db7ec463cf99d7768e" and quality "stable" for server
+[03:53:27.557] Install and start server if needed
+[03:53:31.575] getPlatformForHost was canceled
+[03:53:31.576] Exec server for ssh-remote+3.26.15.245 failed: Error: Connecting was canceled
+[03:53:31.576] Error opening exec server for ssh-remote+3.26.15.245: Error: Connecting was canceled
+```
+
+</details>
 
 #### ***From Non-Windows Machines***
 
@@ -632,7 +719,17 @@ If you are trying to connect to this EC2 instance from a paltform other than Win
 
 ### **3. Deploying the App on the Windows EC2 Instance**
 
-With the RDP, you should be able to view the EC2 machine with a full-fledged GUI. All you need to do is [setup Miniforge](#1-setup-a-mamba-ambush) and then [clone this repository](#executing-the-repository-locally).
+With the RDP, you should be able to view the EC2 machine with a full-fledged GUI. All you need to do on the machine is [setup Miniforge](#1-setup-a-mamba-ambush), [git](https://github.com/git-for-windows/git/releases/tag/v2.42.0.windows.2), and then [clone this repository](#executing-the-repository-locally).
+
+Additionally, in order to run the app on the server, you will need to add the public IP of the EC2 machine to `ALLOWED_HOSTS` in `msgcypher/settings.py`. You can get this IP by selecting the EC2 instance in the [EC2 Dashboard](https://console.aws.amazon.com/ec2/) and looking for the **Public IPv4 address** field in the **Details** tab.
+
+```python
+# `project-root/msgcypher/settings.py`
+ALLOWED_HOSTS = ["127.0.0.1", "x.xx.xxx.xxx"]
+```
+
+> [!IMPORTANT]
+> Note that this IP changes every time you run the machine, so you will need to update it every time you connect to the machine.
 
 If you want to use just the terminal, consider the [VSCode instructions](#from-vscode-remotely-via-the-key-pair-file) to connect to the EC2 instance, or using PuTTY to establish an SSH connection inside a terminal.
 
