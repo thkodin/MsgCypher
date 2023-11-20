@@ -63,14 +63,14 @@ Either:
 
 - Clone this repo:
 
-    ```powershell
+    ```shell
     # Clone to current directory
     git clone https://github.com/thkodin/MsgCypher.git {clone-path}
     ```
 
 - Or, [download it as a zip](https://github.com/thkodin/MsgCypher/archive/refs/heads/main.zip) and extract the repository. You can also do this from PowerShell, which might be helpful if you are connecting remotely.
 
-    ```powershell
+    ```shell
     Invoke-WebRequest https://github.com/thkodin/MsgCypher/archive/refs/heads/main.zip -OutFile {download-path}
     Expand-Archive {zip-path} -DestinationPath {extract-path}
     ```
@@ -81,7 +81,7 @@ Finally, `cd` into the repository root directory (i.e., where this README file a
 
 Assuming either mamba/conda installed and no environment active in current shell, simply use the `environment.yml` included in this repo to replicate the virtual environment by running:
 
-```powershell
+```shell
 # mamba can be replaced with conda
 mamba env create -f environment.yml
 ```
@@ -90,26 +90,26 @@ Note that this creates the venv in your default configured directory for new nam
 
 If you want to install the venv to a custom path, use the `--prefix` (shorthand `-p`) flag:
 
-```powershell
+```shell
 # mamba can be replaced with conda
 mamba env create -f environment.yml -p {path-to-install-venv}
 ```
 
 Once installed, activate it:
 
-```powershell
+```shell
 mamba activate {path-to-installed-venv}
 ```
 
 ### **3. Launch the local host (default port 8000)**
 
-```powershell
+```shell
 python manage.py runserver
 ```
 
 To launch on a different port, e.g., 9000:
 
-```powershell
+```shell
 python manage.py runserver 9000
 ```
 
@@ -146,7 +146,7 @@ runas /user:Administrator powershell  # Windows PWSH
 
 With the elevated PowerShell, run:
 
-```powershell
+```shell
 # Download the installer for Miniforge3 23.3.1
 Invoke-WebRequest https://github.com/conda-forge/miniforge/releases/download/23.3.1-1/Miniforge3-Windows-x86_64.exe -OutFile Miniforge3-Windows-x86_64.exe
 
@@ -170,7 +170,7 @@ powershell
 
 If you do not have Miniforge Prompt for whatever reason, you can use PowerShell or CMD to initialize mamba for PowerShell like so:
 
-```powershell
+```shell
 # Command Prompt/PowerShell
 {miniforge-path}\Scripts\activate.bat {miniforge-path}
 
@@ -200,14 +200,14 @@ Now, you can access all conda/mamba commands directly from PowerShell.
 
 Open up a project in any folder with VSCode, and fire up a PowerShell terminal in this directory (or use VSCode's integrated one if you have it configured to use PowerShell). Assuming a default mamba configuration with nothing changed, the following will create a virtual environment in the `miniforge` directory:
 
-```powershell
+```shell
 # Powershell 7.3.9 #
 conda create msgcypher-venv python=3.11
 ```
 
 Confirm all prompts, and when it's done, verify it's recognized by mamba. The following commands will print a list of recognized environments, activate it, and print the python version for that environment. If anything fails, the terminal will let you know.
 
-```powershell
+```shell
 # Locate in environment list, activate it, and check python version
 mamba info -e
 conda activate msgcypher-venv
@@ -218,14 +218,14 @@ python --version
 
 Now the virtual environment's setup, activate it if not already and install django:
 
-```powershell
+```shell
 # Ensure msgcypher-venv is active beforehand!
 mamba install django
 ```
 
 Once this is done, start a django project:
 
-```powershell
+```shell
 django-admin startproject msgcypher .
 ```
 
@@ -239,13 +239,13 @@ A django project involves a minimum of three things (initialized to default valu
 
 To run the  server on the landing page (by default, this works on port 8000):
 
-```powershell
+```shell
 python manage.py runserver
 ```
 
 To run the server on a different port, e.g, 9000, you'd do:
 
-```powershell
+```shell
 python manage.py runserver 9000
 ```
 
@@ -271,7 +271,7 @@ Django apps are small, distinct, and ideally self-contained parts of the overall
 
 From the project root, create two apps:
 
-```powershell
+```shell
 # Make sure you're in the project root beforehand (where manage.py is)
 python manage.py startapp encoder
 python manage.py startapp decoder
@@ -508,7 +508,7 @@ urlpatterns = [
 
 Run migrations with:
 
-```powershell
+```shell
 python manage.py makemigrations
 python manage.py migrate
 ```
@@ -547,7 +547,7 @@ In my setup, template inheritance is used extensively. `templates/base.html` is 
 
 Now that everything is done, run the server with:
 
-```powershell
+```shell
 # port-num is optional, defaults to 8000
 python manage.py runserver {port-num}
 ```
@@ -628,10 +628,9 @@ All the information you need seems to be in this [StackOverflow post](https://st
 
 For the record, I am unable to get this working desppite ensuring that port 22 on the EC2 instance is open to all SSH traffic. The problem is not VSCode specific, I cannot do this within powershell either with `ssh -i "path/to/key-pair-file" Administrator@{EC2-Instance-Public-IP}`. The error is a connection timeout... I have attached the logs if annybody wants to rack their brains on it.
 
-<details>
-<summary><i>Error Logs</i></summary>
+<details><summary><i>Error Logs</i></summary>
 
-```powershell
+```shell
 [03:53:02.173] Log Level: 2
 [03:53:02.185] SSH Resolver called for "ssh-remote+3.26.15.245", attempt 1
 [03:53:02.189] "remote.SSH.useLocalServer": false
@@ -689,18 +688,15 @@ For the record, I am unable to get this working desppite ensuring that port 22 o
 [03:53:26.524] Received install output: ]0;C:\WINDOWS\System32\cmd.exe
 [03:53:26.525] Failed to parse remote port from server output
 [03:53:26.527] Resolver error: Error:
-	at g.Create (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:642290)
-	at t.handleInstallOutput (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:639656)
-	at t.tryInstall (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:761636)
-	at async c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:722175
-	at async t.withShowDetailsEvent (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:725481)
-	at async I (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:719146)
-	at async t.resolve (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:722852)
-	at async c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:906656
+at g.Create (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:642290)
+at t.handleInstallOutput (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:639656)
+at t.tryInstall (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:761636)
+at async c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:722175
+at async t.withShowDetailsEvent (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:725481)
+at async I (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:719146)
+at async t.resolve (c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:722852)
+at async c:\Users\taimo\.vscode\extensions\ms-vscode-remote.remote-ssh-0.107.0\out\extension.js:2:906656
 [03:53:26.538] ------
-
-
-
 
 [03:53:27.463] Opening exec server for ssh-remote+3.26.15.245
 [03:53:27.534] Initizing new exec server for ssh-remote+3.26.15.245
@@ -712,6 +708,17 @@ For the record, I am unable to get this working desppite ensuring that port 22 o
 ```
 
 </details>
+
+I think [this article](https://medium.com/@pasindujay/how-to-connect-to-aws-ec2-windows-instance-with-openssh-b5dfd0a9e749) offers a plausible solution, i.e., OpenSSH does not come pre-configured on the Windows EC2 instance and must be installed. So, per my understanding, installing OpenSSH on the EC2 instance and following the SO link, i.e., installing Remote Development extension to VSCode on the local system, and then `Ctrl + Shift + P > Remote-SSH: Open SSH Configuration File > %USERPROFILE%\.ssh\config`:
+
+```ini
+Host aws-ec2-windows
+  HostName 3.26.15.245
+  IdentityFile D:\dev\personal\.private\MsgCypher-Key.pem
+  User Administrator
+```
+
+Then, `Ctrl + Shift + P > Remote-SSH: Connect to Host > aws-ec2-windows` (or whatever name you provide to Host parameter in the ssh config file), and it should open a new window and connect via SSH.
 
 #### ***From Non-Windows Machines***
 
